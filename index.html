@@ -201,11 +201,13 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <div class="alert alert-secondary alert-dismissible fade show d-none my-alert" role="alert">
+            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
               <strong>Terima Kasih!</strong> Pesan anda sudah kami terima.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-danger alert-dismissible fade show d-none d-alert" role="alert">
+              <strong>Gagal Terkirim!!!</strong> Silahkan Input Terlebih dahulu.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <form name="contact">
               <div class="mb-3">
@@ -245,9 +247,32 @@
       const btnKirim = document.querySelector(".btn-kirim");
       const btnLoading = document.querySelector(".btn-loading");
       const myAlert = document.querySelector(".my-alert");
+      const dAlert = document.querySelector(".d-alert");
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();
+
+        // Ambil semua input
+        const nama = form["nama"].value.trim();
+        const email = form["email"].value.trim();
+        const pesan = form["pesan"].value.trim();
+
+        // Validasi input kosong
+        if (nama === "" || email === "" || pesan === "") {
+          // Tampilkan alert error
+          dAlert.classList.remove("d-none");
+
+          // Sembunyikan alert setelah 5 detik (opsional)
+          setTimeout(() => {
+            dAlert.classList.add("d-none");
+          }, 5000);
+
+          return; // Hentikan proses kirim
+        }
+
+        // Input valid: lanjut kirim
+        dAlert.classList.add("d-none"); // Pastikan alert disembunyikan
+
         // ketika tombol submit diklik
         // tampilkan tombol loading dan hilangkan tombol kirim
         btnLoading.classList.toggle("d-none");
@@ -260,8 +285,13 @@
             // Tampilkan Alert
             myAlert.classList.toggle("d-none");
             // reset form
-            form.reset();
+            form.reset;
             console.log("Success!", response);
+
+            // Sembunyikan alert sukses setelah 5 detik (opsional)
+            setTimeout(() => {
+              myAlert.classList.add("d-none");
+            }, 5000);
           })
           .catch((error) => console.error("Error!", error.message));
       });
