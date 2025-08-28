@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <link rel="icon" type="image/png" href="img/favicon.png" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <!--  -->
 
     <title>Portofolio</title>
@@ -43,6 +46,12 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="music-toggle" title="Play Music"><i class="fas fa-music"></i></a>
+              <audio id="bg-music" loop>
+                <source src="audio/MARS.mp3" type="audio/mpeg" />
+              </audio>
             </li>
           </ul>
         </div>
@@ -261,6 +270,26 @@
     <script>
       AOS.init();
     </script>
-    <!--  -->
+
+    <!-- Audio -->
+    <script>
+      const audio = document.getElementById("bg-music");
+      const musicToggle = document.getElementById("music-toggle");
+      let isPlaying = false;
+
+      musicToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (isPlaying) {
+          audio.pause();
+          musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+          musicToggle.title = "Play Music";
+        } else {
+          audio.play();
+          musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+          musicToggle.title = "Pause Music";
+        }
+        isPlaying = !isPlaying;
+      });
+    </script>
   </body>
 </html>
