@@ -64,8 +64,7 @@ body {
 /* ===== Jumbotron Improvement ===== */
 .jumbotron img {
   border: 5px solid #fff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 /* ===== Section Headings ===== */
@@ -86,7 +85,7 @@ section h2 {
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
